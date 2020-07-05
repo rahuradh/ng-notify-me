@@ -1,0 +1,65 @@
+<div class="title-bar">
+    <div class="mat-headline page-title">NotifyMe Application Portal
+        <button class="logoutButton" (click)="logOut()"  mat-raised-button color="primary">Log Out</button>
+    </div>
+</div>
+<mat-form-field class="search-field">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Eg: Birthday">
+</mat-form-field>
+<mat-label class="row-count mat-subheading-2">Count : {{rowCount}}</mat-label>
+<div class="table-container" *ngIf="dataSource.filteredData.length!=0">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8 table-layout">
+        <ng-container matColumnDef="eventName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eventType">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Type </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventType}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eventDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Event Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.eventDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="notificationDays">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Notification Days </th>
+            <td mat-cell *matCellDef="let element" class="notificaton-days"> {{element.notificationDays}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-mini-fab [ngClass]="{'status-cell': element.status==='On' }">
+                    {{element.status}}</button></td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </th>
+            <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="eventId">
+            <th mat-header-cell *matHeaderCellDef [hidden]=true> Event Id </th>
+            <td mat-cell *matCellDef="let element" [hidden]=true> {{element.eventId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="userName">
+            <th mat-header-cell *matHeaderCellDef [hidden]=true> User Name </th>
+            <td mat-cell *matCellDef="let element" [hidden]=true> {{element.userName}} </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="goToDetailPage(row)"></tr>
+    </table>
+</div>
+<div class="no-data-found" *ngIf="dataSource.filteredData.length==0">
+    <mat-icon [inline]="true">search</mat-icon>
+    <mat-label class="empty-label">No Event Found</mat-label>
+</div>
+<button mat-mini-fab color="accent" class="button-go-to-input" (click)="goToInput()" matTooltip="Create New  Event"
+    matTooltipPosition="left" matTooltipHideDelay="1000">
+    <mat-icon>add_circle</mat-icon>
+</button>

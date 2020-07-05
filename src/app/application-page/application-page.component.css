@@ -1,0 +1,68 @@
+.title-bar {
+    background: black;
+    color: white;
+    height: 60px;
+    width: 100%;
+}
+
+.page-title {
+    padding-left: 25px;
+    padding-top: 15px;
+}
+
+.logoutButton {
+    float: right;
+    margin-right: 25px;
+}
+
+.button-div {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.back-btn-div {
+    margin-left: 20px;
+    position: relative;
+    float: left;
+}
+
+.other-btn-div {
+    margin-right: 50px;
+    position: relative;
+    float: right;
+}
+
+.form-div {
+    margin-top: 80px;
+    position: relative;
+    float: left;
+}
+
+.back-btn {
+    margin-left: 10px;
+}
+
+.delete-btn {
+    margin-left: 10px;
+}
+
+.copy-btn {
+    margin-left: 10px;
+}
+
+.edit-btn {
+    margin-left: 10px;
+}
+
+.update-btn {
+    margin-left: 10px;
+}
+
+.save-btn {
+    margin-left: 10px;
+}
+
+::ng-deep .red-snackbar {
+    background-color: rgb(235, 0, 125);
+    color: lightgoldenrodyellow;
+}

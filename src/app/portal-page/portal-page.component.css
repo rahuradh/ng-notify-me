@@ -1,0 +1,92 @@
+.main-body {
+    /* background: rgba(241, 230, 216, 0.3); */
+    background-color: rgba(223, 17, 3, 0.3) !important;
+}
+
+.title-bar {
+    background: black;
+    color: white;
+    height: 60px;
+    width: 100%;
+}
+
+.logoutButton {
+    float: right;
+    margin-right: 25px;
+}
+
+.page-title {
+    padding-left: 25px;
+    padding-top: 15px;
+}
+
+.table-container {
+    margin-top: 10px;
+    max-height: 60%;
+    overflow: auto;
+}
+
+.button-go-to-input {
+    margin: 10px 20px 10px 0px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.table-layout {
+    width: 96%;
+    margin-left: 25px;
+}
+
+.search-field {
+    margin-top: 25px;
+    margin-left: 25px;
+    font-size: 14px;
+    width: 95%;
+}
+
+.row-count {
+    margin: 25px 0px 10px 25px;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.hide {
+    display: none;
+}
+
+.no-data-found {
+    margin-top: 10%;
+    display: block;
+    justify-content: center;
+    margin-left: 37%;
+    font-size: 50px;
+}
+
+.empty-label {
+    font-size: 40px;
+}
+
+.mat-row:nth-child(even) {
+    background-color: rgb(247, 247, 247);
+}
+
+.mat-row:nth-child(odd) {
+    background-color: rgb(235, 235, 235);
+}
+
+.status-cell {
+    background-color: rgb(0, 180, 54);
+}
+
+.mat-header-cell {
+    font-size: 16px;
+    color: black;
+    background-color: rgb(248, 248, 248);
+}
+
+.notificaton-days {
+    text-align: center;
+}

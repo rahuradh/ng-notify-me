@@ -1,0 +1,94 @@
+<div class="title-bar">
+    <div class="mat-headline page-title">{{screenTitle}}
+        <button class="logoutButton" (click)="logOut()" mat-raised-button color="primary">Log Out</button>
+    </div>
+</div>
+<div class="button-div">
+    <div class="back-btn-div">
+        <button mat-mini-fab color="basic" class="back-btn" (click)="backToPortal()" matTooltip="Back To Portal"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </div>
+    <div class="other-btn-div">
+        <button mat-mini-fab color="basic" class="delete-btn" (click)="deleteEvent()" matTooltip="Delete Event"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000"
+            *ngIf="deleteButtonDispaly">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="basic" class="copy-btn" (click)="copyEvent()" matTooltip="Copy Event"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000" *ngIf="copyButtonDispaly">
+            <mat-icon>content_copy</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="edit-btn" (click)="editEvent()" matTooltip="Edit Event"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000" *ngIf="editButtonDispaly">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="update-btn" (click)="updateEvent()" matTooltip="Update Event"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000"
+            *ngIf="updateButtonDispaly">
+            <mat-icon>update</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" class="save-btn" (click)="saveEvent()" matTooltip="Save Event"
+            matTooltipPosition="below" matTooltipHideDelay="1000" matTooltipShowDelay="1000" *ngIf="saveButtonDispaly"
+            [disabled]="isSaveButtonEnabled" type="reset">
+            <mat-icon>save</mat-icon>
+        </button>
+    </div>
+</div>
+<div class="form-div">
+    <form #eventForm="ngForm" name="form" (ngSubmit)="eventForm.form.valid && saveEvent()" novalidate>
+        <div>
+            <mat-form-field appearance="outline" [hideRequiredMarker]="isRequredFields">
+                <mat-label>Event Name</mat-label>
+                <input matInput type="text" class="form-control" #eventName="ngModel" name="eventName"
+                    [(ngModel)]="eventModel.eventName" [readonly]="isReadOnly" required autofocus>
+                <mat-error *ngIf="isEventNameError">Event Name is mandatory.</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Event Type</mat-label>
+                <mat-select #eventType="ngModel" class="form-control" required name="eventType"
+                    [(ngModel)]="eventModel.eventType">
+                    <mat-option *ngFor="let event of eventTypes " [value]="event.name" [disabled]="isReadOnly">
+                        {{event.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" [hideRequiredMarker]="isRequredFields">
+                <mat-label>Event Date</mat-label>
+                <input matInput [matDatepicker]="picker" #eventDate="ngModel" name="eventDate"
+                    [(ngModel)]="eventModel.eventDate" [min]="minDate" [max]="maxDate" [readonly]="isReadOnly" required>
+                <mat-datepicker-toggle matSuffix [for]="picker" [disabled]="isReadOnly"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="isEventDateError">Event Date is mandatory.</mat-error>
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Notification Days</mat-label>
+                <input matInput type="number" min="0" class="form-control" #notificationDays="ngModel"
+                    name="notificationDays" [(ngModel)]="eventModel.notificationDays" [readonly]="isReadOnly">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-slide-toggle #status="ngModel" class="form-control" name="status" [(ngModel)]="eventModel.status"
+                [disabled]="isReadOnly"> Status</mat-slide-toggle>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" *ngIf=false>
+                <input matInput type="text" class="form-control" #eventId="ngModel" required name="eventId"
+                    [(ngModel)]="eventModel.eventId">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline" *ngIf=false>
+                <input matInput type="text" class="form-control" #userName="ngModel" required name="userName"
+                    [(ngModel)]="eventModel.userName">
+            </mat-form-field>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+<form class="container" #userForm="ngForm">
+    <div class="title"> NotifyMe</div>
+    <mat-form-field appearance="legacy">
+        <mat-label>Username</mat-label>
+        <input matInput required name="userName" #userName="ngModel" [(ngModel)]="userModel.userName"
+            placeholder="Phone No." (input)="getMeWhileUsernameType($event.target.value)"
+            (keypress)="numberOnly($event)" type="text">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-hint *ngIf="isUserNameError">{{userNameErrorMsg}}</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="legacy">
+        <mat-label>Password</mat-label>
+        <input matInput required name="password" #password="ngModel" [type]="hide ? 'password' : 'text'"
+            [(ngModel)]="userModel.password" (input)="getMeWhilePasswordType($event.target.value)">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-hint *ngIf="isPasswordError">{{passwordErrorMsg}}</mat-hint>
+    </mat-form-field>
+    <button mat-fab class="button-login" (click)="login()">Login</button>
+    <div class="buttonRow">
+        <button mat-button>Register</button>
+        <a mat-button href="https://www.google.com/" target="_blank">Forgot Password</a>
+    </div>
+</form>

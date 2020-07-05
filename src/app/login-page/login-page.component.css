@@ -1,0 +1,33 @@
+@import url(https://fonts.googleapis.com/css?family=Aladin);
+.container {
+    border: 10px solid rgb(9, 183, 236);
+    padding: 10px;
+    margin: 10% 50% 0 40%;
+    float: left;
+    background-color: rgba(193, 243, 250, 0.3);
+}
+
+.title {
+    margin: 40px 0 50px 35px;
+    font-size: 50px;
+    font-family: 'Aladin';
+}
+
+.mat-form-field {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.button-login {
+    margin-left: 83px;
+    margin-bottom: 5px;
+}
+
+.mat-hint {
+    color: red;
+}
+
+.buttonRow {
+    position: relative;
+    float: left;
+}
