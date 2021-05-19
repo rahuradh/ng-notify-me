@@ -9,7 +9,7 @@ import { ApplicationPageComponent } from './application-page/application-page.co
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent
+    component: LoginPageComponent
   },
   {
     path: 'login',
@@ -34,5 +34,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-component: LoginPageComponent
+
 export const AppRoutingComponents = [AppComponent, LoginPageComponent, PortalPageComponent, ApplicationPageComponent];

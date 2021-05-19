@@ -14,33 +14,33 @@ export class EventManagementService {
   constructor(private httpClient: HttpClient, private datePipe: DatePipe) { }
 
   public saveEvent(eventModel) {
-    this.httpClient.post("/api/event/addNewEvent", eventModel).toPromise().then(data => {
+    this.httpClient.post('/api/event/addNewEvent', eventModel).toPromise().then(data => {
       console.log(data);
     });
   }
 
   public updateEvent(eventModel) {
-    this.httpClient.post("/api/event/updateEvent", eventModel).toPromise().then(data => {
+    this.httpClient.post('/api/event/updateEvent', eventModel).toPromise().then(data => {
       console.log(data);
     });
   }
 
   public deleteEvent(eventModel) {
-    this.httpClient.post("/api/event/deleteEvent", eventModel).toPromise().then(data => {
+    this.httpClient.post('/api/event/deleteEvent', eventModel).toPromise().then(data => {
       console.log(data);
     });
   }
 
   public getAllEvents(): Observable<EventEntity[]> {
-    let gridValueList = [];
-    var response = this.httpClient.get<EventEntity[]>('/api/event/getAllEvents')
+    const gridValueList = [];
+    return this.httpClient.get<EventEntity[]>('/api/event/getAllEvents')
       .pipe(
         map((datas: EventEntity[]) => {
           datas.forEach((key, val) => {
-            const eventStatus: string = (key.status) ? "On" : "Off";
-            const eventDateFormated: string = this.datePipe.transform(new Date(key.eventDate), "EEEE, MMMM d, y");
-            const createdDateFormated: string = this.datePipe.transform(new Date(key.createdDate), "MMMM d, y");
-            let gridValue = {
+            const eventStatus: string = (key.status) ? 'On' : 'Off';
+            const eventDateFormated: string = this.datePipe.transform(new Date(key.eventDate), 'EEEE, MMMM d, y');
+            const createdDateFormated: string = this.datePipe.transform(new Date(key.createdDate), 'MMMM d, y');
+            const gridValue = {
               eventId: key.eventId,
               userName: key.userName,
               eventName: key.eventName,
@@ -49,26 +49,25 @@ export class EventManagementService {
               notificationDays: key.notificationDays,
               status: eventStatus,
               createdDate: createdDateFormated
-            }
+            };
             gridValueList.push(gridValue);
           });
           return gridValueList;
         }), catchError(this.handleError<EventEntity[]>('getEvents', []))
       );
-    return response;
   }
 
   public getEventsByUserName(username): Observable<EventEntity[]> {
-    const opts = { params: new HttpParams({ fromString: "userName=" + username }) };
-    let gridValueList = [];
-    var response = this.httpClient.get<EventEntity[]>("/api/event/getEventsByUserName", opts)
+    const opts = { params: new HttpParams({ fromString: 'userName=' + username }) };
+    const gridValueList = [];
+    return this.httpClient.get<EventEntity[]>('/api/event/getEventsByUserName', opts)
       .pipe(
         map((datas: EventEntity[]) => {
           datas.forEach((key, val) => {
-            const eventStatus: string = (key.status) ? "On" : "Off";
-            const eventDateFormated: string = this.datePipe.transform(new Date(key.eventDate), "EEEE, MMMM d, y");
-            const createdDateFormated: string = this.datePipe.transform(new Date(key.createdDate), "MMMM d, y");
-            let gridValue = {
+            const eventStatus: string = (key.status) ? 'On' : 'Off';
+            const eventDateFormated: string = this.datePipe.transform(new Date(key.eventDate), 'EEEE, MMMM d, y');
+            const createdDateFormated: string = this.datePipe.transform(new Date(key.createdDate), 'MMMM d, y');
+            const gridValue = {
               eventId: key.eventId,
               userName: key.userName,
               eventName: key.eventName,
@@ -77,24 +76,22 @@ export class EventManagementService {
               notificationDays: key.notificationDays,
               status: eventStatus,
               createdDate: createdDateFormated
-            }
+            };
             gridValueList.push(gridValue);
           });
           return gridValueList;
         }), catchError(this.handleError<EventEntity[]>('getEvents', []))
       );
-    return response;
   }
 
   public getEventById(eventId): Observable<EventEntity> {
-    const opts = { params: new HttpParams({ fromString: "eventId=" + eventId }) };
-    var response = this.httpClient.get<EventEntity>("/api/event/getEventById", opts)
+    const opts = { params: new HttpParams({ fromString: 'eventId=' + eventId }) };
+    return this.httpClient.get<EventEntity>('/api/event/getEventById', opts)
       .pipe(
         map((data: EventEntity) => {
           return data;
         }), catchError(this.handleError<EventEntity>('getEvents'))
       );
-    return response;
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

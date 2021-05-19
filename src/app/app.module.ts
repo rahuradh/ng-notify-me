@@ -14,11 +14,7 @@ import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppRoutingComponents,
-    LoginPageComponent,
-    PortalPageComponent,
-    ApplicationPageComponent
+    AppRoutingComponents
   ],
   imports: [
     BrowserModule,
